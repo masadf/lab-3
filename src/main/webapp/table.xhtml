@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="ru" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <meta charset="UTF-8"/>
+    <title>Web 3</title>
+    <link rel="stylesheet" href="css/styles.css"/>
+</h:head>
+<h:body>
+    <div class="table-wrapper">
+        <div class="table-block sector">
+            <div class="container">
+                <div class="block-header">Таблица</div>
+                <div class="table">
+                    <h:dataTable value="#{hitBean.hits}" var="hit">
+                        <h:column>
+                            <f:facet name="header">X</f:facet>
+                            #{hit.XVal}
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Y</f:facet>
+                            #{hit.YVal}
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">R</f:facet>
+                            #{hit.RVal}
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Current time</f:facet>
+                            #{hit.currentTime}
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Execution time</f:facet>
+                            #{hit.executionTime}
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Hit</f:facet>
+                            #{hit.hit}
+                        </h:column>
+                    </h:dataTable>
+                </div>
+            </div>
+        </div>
+        <h:link value="Вернуться к форме" outcome="index"/>
+    </div>
+</h:body>
+</html>
