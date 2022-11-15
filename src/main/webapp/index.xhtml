@@ -7,7 +7,6 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 <h:head>
-    <meta charset="UTF-8"/>
     <title>Web 3</title>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <link rel="stylesheet" href="css/styles.css"/>
@@ -17,21 +16,26 @@
         <div class="header sector">
             <div class="container">
                 <div class="name">Марьин Савва(P32111)</div>
-                <div class="option">1109</div>
+                <div class="option">
+                    1109
+                    <div class="time" id="current-time"/>
+                </div>
             </div>
         </div>
         <div class="graph-block sector">
             <div class="container">
                 <div class="block-header">График</div>
-                <div class="area-wrapper" id="graph-image">
+                <h:panelGroup class="area-wrapper" id="graph-image">
                     <img src="img/area.png" alt="area"/>
-                    <ui:repeat var="hit" value="#{hitBean.hits}" varStatus="status">
+                    <ui:repeat var="hit"
+                               value="#{hitBean.hits.stream().filter((x)->x.RVal==hitBean.newPoint.RVal).toList()}"
+                               varStatus="status">
                         <div class="dot"
                              style="top: ${175 - hit.YVal*175/(1.25*hit.RVal)-4}px;
-                                 left: ${175 + hit.XVal*175/(1.25*hit.RVal)-4}px;"></div>
+                                 left: ${175 + hit.XVal*175/(1.25*hit.RVal)-4}px; background: ${hit.hit ? 'green':'red'};"></div>
                     </ui:repeat>
                     <h:outputScript library="js" name="main.js"/>
-                </div>
+                </h:panelGroup>
             </div>
         </div>
         <div class="values-block sector">
@@ -70,7 +74,8 @@
                                     <h:commandLink type="button" value="4" action="#{hitBean.newPoint.setXVal(4)}">
                                         <f:ajax render="xVal xVal-view"/>
                                     </h:commandLink>
-                                    <h:inputHidden id="xVal" value="#{hitBean.newPoint.XVal}" converterMessage="X - число!">
+                                    <h:inputHidden id="xVal" value="#{hitBean.newPoint.XVal}"
+                                                   converterMessage="X - число!">
                                         <f:validator validatorId="xValidator"/>
                                     </h:inputHidden>
                                 </ul>
@@ -90,13 +95,15 @@
                         <div class="values-row">
                             <div class="value-header">R</div>
                             <div class="value-choose-block">
-                                <p:spinner id="rVal" max="3" min="1" value="#{hitBean.newPoint.RVal}"
-                                           validator="rValidator" stepFactor="0.5"/>
+                                <p:spinner id="rVal" max="3" min="1" value="#{hitBean.newPoint.RVal}" immediate="true"
+                                           validator="rValidator" stepFactor="0.5" converterMessage="R - число!">
+                                    <p:ajax event="change" execute="rVal" update="graph-image"/>
+                                </p:spinner>
                             </div>
                         </div>
                         <div class="error">
-                            <h:message for="xVal"/>
-                            <h:message for="yVal"/>
+                            <h:message for="xVal"/><br/>
+                            <h:message for="yVal"/><br/>
                             <h:message for="rVal"/>
                         </div>
                     </div>
@@ -106,13 +113,6 @@
                         <h:link value="К таблице" type="button" outcome="table"/>
                     </div>
                 </h:form>
-            </div>
-        </div>
-
-        <div class="buttons-block">
-            <div class="buttons">
-                <button type="submit" id="go_back">Вернуться назад</button>
-                <button type="button" id="clear_table">Очистить таблицу</button>
             </div>
         </div>
     </div>

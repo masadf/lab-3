@@ -16,6 +16,7 @@ public class YValidator implements Validator {
     @Override
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
         double yVal = (double) value;
+
         if (yVal > 5 || yVal < -3) {
             throw new ValidatorException(new FacesMessage("Y не попадает в ОДЗ!"));
         }

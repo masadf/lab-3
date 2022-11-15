@@ -16,6 +16,7 @@ public class RValidator implements Validator {
     @Override
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
         double rVal = (double) value;
+
         if (rVal > 3 || rVal < 1) {
             throw new ValidatorException(new FacesMessage("R не попадает в ОДЗ!"));
         }

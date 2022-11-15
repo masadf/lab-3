@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 public class Point {
     private double xVal;
     private double yVal;
-    private double rVal;
+    private double rVal = 1.0;
     private long timezone;
 }

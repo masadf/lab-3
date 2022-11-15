@@ -11,7 +11,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: max-content 1fr .2fr;
-    height: 100vh;
+    height: 105vh;
     width: 100vw;
     padding: 2rem;
     gap: 2rem;
@@ -31,9 +31,10 @@
     grid-row: 2/3;
 }
 
-.header > .container {
+.header .container {
     padding: 1rem;
     display: grid;
+    align-items: center;
     grid-template-columns: auto auto;
     justify-content: space-between;
 }
@@ -104,6 +105,7 @@
 
 .table table th, .table table td {
     text-align: center;
+    height: 3rem;
     padding: .7rem 2rem;
 }
 
@@ -197,9 +199,10 @@ button {
 }
 
 .error {
+    text-align: start;
     padding: 1rem 0;
     color: red;
-    height: 3rem;
+    height: 6rem;
     font-weight: 700;
     justify-self: center;
 }
@@ -283,4 +286,10 @@ input[type=text]:focus {
     grid-auto-flow: row;
     grid-template-rows: auto auto;
     gap: .5rem
+}
+
+.option{
+    display: grid;
+    text-align: end;
+    grid-template-rows: 1fr 1fr;
 }

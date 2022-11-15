@@ -16,6 +16,7 @@ public class XValidator implements Validator {
     @Override
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
         double xVal = (double) value;
+
         if (xVal > 4 || xVal < -4) {
             throw new ValidatorException(new FacesMessage("X не попадает в ОДЗ!"));
         }
