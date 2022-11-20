@@ -1,5 +1,6 @@
 package model;
 
+import beans.Point;
 import exceptions.InvalidParameterException;
 
 import java.time.ZonedDateTime;

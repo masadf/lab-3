@@ -28,7 +28,7 @@
                 <h:panelGroup class="area-wrapper" id="graph-image">
                     <img src="img/area.png" alt="area"/>
                     <ui:repeat var="hit"
-                               value="#{hitBean.hits.stream().filter((x)->x.RVal==hitBean.newPoint.RVal).toList()}"
+                               value="#{hitBean.hits.stream().filter((x)->x.RVal==point.RVal).toList()}"
                                varStatus="status">
                         <div class="dot"
                              style="top: ${175 - hit.YVal*175/(1.25*hit.RVal)-4}px;
@@ -47,47 +47,47 @@
                             <div class="value-header">X</div>
                             <div class="value-choose-block choose-x">
                                 <ul class="links">
-                                    <h:commandLink type="button" value="-4" action="#{hitBean.newPoint.setXVal(-4)}">
+                                    <h:commandLink type="button" value="-4" action="#{point.setXVal(-4)}">
                                         <f:ajax render="xVal xVal-view"/>
                                     </h:commandLink>
-                                    <h:commandLink type="button" value="-3" action="#{hitBean.newPoint.setXVal(-3)}">
+                                    <h:commandLink type="button" value="-3" action="#{point.setXVal(-3)}">
                                         <f:ajax render="xVal xVal-view"/>
                                     </h:commandLink>
-                                    <h:commandLink type="button" value="-2" action="#{hitBean.newPoint.setXVal(-2)}">
+                                    <h:commandLink type="button" value="-2" action="#{point.setXVal(-2)}">
                                         <f:ajax render="xVal xVal-view"/>
                                     </h:commandLink>
-                                    <h:commandLink type="button" value="-1" action="#{hitBean.newPoint.setXVal(-1)}">
+                                    <h:commandLink type="button" value="-1" action="#{point.setXVal(-1)}">
                                         <f:ajax render="xVal xVal-view"/>
                                     </h:commandLink>
-                                    <h:commandLink type="button" value="0" action="#{hitBean.newPoint.setXVal(0)}">
+                                    <h:commandLink type="button" value="0" action="#{point.setXVal(0)}">
                                         <f:ajax render="xVal xVal-view"/>
                                     </h:commandLink>
-                                    <h:commandLink type="button" value="1" action="#{hitBean.newPoint.setXVal(1)}">
+                                    <h:commandLink type="button" value="1" action="#{point.setXVal(1)}">
                                         <f:ajax render="xVal xVal-view"/>
                                     </h:commandLink>
-                                    <h:commandLink type="button" value="2" action="#{hitBean.newPoint.setXVal(2)}">
+                                    <h:commandLink type="button" value="2" action="#{point.setXVal(2)}">
                                         <f:ajax render="xVal xVal-view"/>
                                     </h:commandLink>
-                                    <h:commandLink type="button" value="3" action="#{hitBean.newPoint.setXVal(3)}">
+                                    <h:commandLink type="button" value="3" action="#{point.setXVal(3)}">
                                         <f:ajax render="xVal xVal-view"/>
                                     </h:commandLink>
-                                    <h:commandLink type="button" value="4" action="#{hitBean.newPoint.setXVal(4)}">
+                                    <h:commandLink type="button" value="4" action="#{point.setXVal(4)}">
                                         <f:ajax render="xVal xVal-view"/>
                                     </h:commandLink>
-                                    <h:inputHidden id="xVal" value="#{hitBean.newPoint.XVal}"
+                                    <h:inputHidden id="xVal" value="#{point.XVal}"
                                                    converterMessage="X - число!">
                                         <f:validator validatorId="xValidator"/>
                                     </h:inputHidden>
                                 </ul>
                                 <div class="chosen-value">
-                                    <h:outputText id="xVal-view" value="${hitBean.newPoint.XVal}"/>
+                                    <h:outputText id="xVal-view" value="${point.XVal}"/>
                                 </div>
                             </div>
                         </div>
                         <div class="values-row">
                             <div class="value-header">Y</div>
                             <div class="value-choose-block">
-                                <h:inputText id="yVal" value="#{hitBean.newPoint.YVal}" converterMessage="Y - число!">
+                                <h:inputText id="yVal" value="#{point.YVal}" converterMessage="Y - число!">
                                     <f:validator validatorId="yValidator"/>
                                 </h:inputText>
                             </div>
@@ -95,7 +95,7 @@
                         <div class="values-row">
                             <div class="value-header">R</div>
                             <div class="value-choose-block">
-                                <p:spinner id="rVal" max="3" min="1" value="#{hitBean.newPoint.RVal}" immediate="true"
+                                <p:spinner id="rVal" max="3" min="1" value="#{point.RVal}" immediate="true"
                                            validator="rValidator" stepFactor="0.5" converterMessage="R - число!">
                                     <p:ajax event="change" execute="rVal" update="graph-image"/>
                                 </p:spinner>
@@ -108,7 +108,7 @@
                         </div>
                     </div>
                     <div class="buttons">
-                        <h:commandButton value="Добавить" id="addButton" action="#{hitBean.addHit()}"/>
+                        <h:commandButton value="Добавить" id="addButton" action="#{hitBean.addHit(point)}"/>
                         <h:commandButton value="Очистить" action="#{hitBean.clearHits()}"/>
                         <h:link value="К таблице" type="button" outcome="table"/>
                     </div>
